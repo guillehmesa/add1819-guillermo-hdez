@@ -21,6 +21,7 @@ Ahora comprobamos que hay conexión entre ambos equipos.
 
 ##  Primera conexión SSH GNU/Linux
 Vamos al cliente `ssh-client21g` que hemos creado y hacemos un ping a `ssh-server21g` para comprobar la conectividad con el servidor.
+
 ![Captura 1](img/1.png)
 
 Ahora vamos a la máquina real y comprobamos si los puertos están abiertos en el servidor.
@@ -32,7 +33,7 @@ Vamos a ir a la maquina Cliente y nos conectamos mediante ssh al servidor Linux.
 Ahora si nos volvemos a conectar nos sale:
 ![Captura 4](img/4.png)
 
-A continuación vamos a comprobar el contenido de **/.ssh/know_hosts en el equipo `ssh-client21g`.
+A continuación vamos a comprobar el contenido de **/.ssh/know_hosts** en el equipo `ssh-client21g`.
 ![Captura 5](img/5.png)
 
 ## Primera conexión SSH desde cliente Windows
