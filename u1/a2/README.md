@@ -77,9 +77,11 @@ Por último comprobamos si nos deja acceder remotamente vía SSH. Desde **ssh-cl
 
 ## Uso de SSH como túnel para X
 Vamos a instalar en el servidor una Aplicación de entrono gráfico que no esté en los clientes. Vamos a elegir la Aplicación **Geany**.
+
 ![Captura 22](img/22.png)
 
 Ahora modificamos el fichero `/etc/ssh/sshd_config` para permitir la ejecución de aplicaciones gráficas. La opción `X11Forwarding yes` .
+
 ![Captura 23](img/23.png)
 
 Entramos en la máquina **cliente21g** y comprobamos si Geany está instalado `zypper se geany`.
@@ -105,10 +107,12 @@ Localizamos el programa Geany y miramos que permisos tiene.
 ![Captura 30](img/30.png)
 
 Ahora cambiaremos el programa al grupo `remoteapps`
+
 ![Captura 31](img/31.png)
 ![Captura 32](img/32.png)
 
 Podremos los permisos del ejecutable a 750.
+
 ![Captura 33](img/33.png)
 
 Ahora comprobamos el funcionamiento en el servidor en local y desde el cliente en remoto.
