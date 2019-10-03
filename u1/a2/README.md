@@ -116,5 +116,6 @@ Podremos los permisos del ejecutable a 750.
 ![Captura 33](img/33.png)
 
 Ahora comprobamos el funcionamiento en el servidor en local y desde el cliente en remoto.
+
 ![Captura 34](img/34.png)
 ![Captura 35](img/35.png)
