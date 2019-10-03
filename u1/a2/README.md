@@ -14,7 +14,7 @@ Ahora comprobamos que hay conexión entre ambos equipos.
 
 Vamos a la máquina `ssh-client21w` e instalamos el software cliente SSH, usaremos *PuTTY*.
 Ahora añadiremos a **C:\Windows\System32\drivers\etc\hosts** los equipos `ssh-server21g` y `ssh-client21g`.
-![Captura 0.5](img/0.5.png)
+![Captura 0.5](img/05.png)
 
 Ahora comprobamos que hay conexión entre ambos equipos.
 ![Captura 0.6](img/0.6.png)
