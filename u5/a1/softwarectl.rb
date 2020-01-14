@@ -1,16 +1,46 @@
 #!/usr/bin/ruby
 #Autor: Guillermo Hernández Mesa
 #Este script consiste en control de software con el comando softwarectl.
-
+option = ARGV[0]
 filename = ARGV[1]
 
-#Muestra mensaje de error al estar los argumentos vacios.
-def empty_arguments
-  puts 'Comando ejecutado sin argumentos, para más ayuda, ejecuta systemctl --help'
+#Comprueba si el programa está instalado con el comando --status
+def check(f_package)
+  status = `whereis #{f_package[0]} |grep bin |wc -l`.to_i
+    if status == 0
+      puts "#{f_package[0]} -> Uninstalled"
+    elsif status == 1
+      puts "#{f_package[0]} -> Installed"
+    end
 end
 
-#Muestra la ayuda con el comando --help
-def help
+#Instala/desinstala el programa
+def install(f_package)
+  status = `whereis #{f_package[0]} |grep bin |wc -l`.to_i
+  action = "#{f_package[1]}".to_s
+
+  if action == "install"
+    if status == 0
+      `apt-get install -y #{f_package[0]}`
+      puts "#{f_package[0]} -> (I) installed"
+    elsif status == 1
+      puts "#{f_package[0]} -> (I) ya está instalado"
+    end
+
+  elsif action == "remove"
+      if status == 1
+        `apt-get remove -y  #{f_package[0]}`
+        puts "#{f_package[0]} -> (U) uninstalled"
+      elsif status == 0
+        puts "#{f_package[0]} -> (U) no está instalado"
+      end
+  end
+end
+
+
+if option.nil?
+  puts 'Comando ejecutado sin argumentos, para más ayuda, ejecuta systemctl --help'
+elsif option == '--help'
   puts 'Usage:
         systemctml [OPTIONS] [FILENAME]
 Options:
@@ -26,83 +56,30 @@ Description:
         tree:install
         nmap:install
         atomix:remove'
-end
-
-#Muestra la información con el comando --version
-def info
+elsif option == '--version'
   puts '  Autor : Guillermo Hdez Mesa
-  Fecha de Creación : 14/01/2020'
-end
+    Fecha de Creación : 14/01/2020'
+elsif option == '--status'
+  file = `cat FILENAME.txt`
+  f_lines = file.split("\n")
+  f_lines.each do |a|
+    f_package = a.split(":")
+    check(f_package)
+  end
 
-#Comprueba si el programa está instalado con el comando --status
-def check
-  status = `zypper se #{f_package[0]} |grep bin |wc -l`
-    if status == 0
-      puts 'Uninstalled'
-    else
-      puts 'Installed'
-    end
-end
+elsif option == '--run'
+  user = `whoami`.to_i
 
-#Comprueba si eres root con el comando --run
-def run
-  user = `whoami`.chop
-  if user == 'root'
+  if user == 0
     file = `cat FILENAME.txt`
     f_lines = file.split("\n")
     f_lines.each do |a|
       f_package = a.split(":")
-      check(f_package)
+      install(f_package)
     end
-  else
-    puts 'Se nesecita ser usuario root para ejecutar el script'
+
+  elsif user != 0
+    puts "Se necesita ser usuario root para ejecutar el script"
     exit 1
   end
 end
-
-#Instala el programa
-def install
-  status = `whereis #{f_package[0]} |grep bin |wc -l`
-  action = "#{f_package[1]}"
-
-  if action == "install"
-    if status == 0
-      `apt-get install -y #{f_package[0]}`
-      puts 'Installed'
-    else
-      puts 'Ya está instalado'
-    end
-  end
-end
-
-#Desinstala el programa
-def remove
-  status = `whereis #{f_package[0]} |grep bin |wc -l`
-  action = "#{f_package[1]}"
-
-  if action == "remove"
-    if status == 0
-      `apt-get remove -y #{f_package[0]}`
-      puts 'Uninstalled'
-    else
-      puts 'No está instalado'
-    end
-  end
-end
-
-def menu
-  option = ARGV[0]
-  if option.nil?
-    empty_arguments
-  elsif option == '--help'
-    help
-  elsif option == '--version'
-    info
-  elsif option == '--status'
-    check
-  elsif option == '--run'
-    run
-  end
-end
-
-puts menu
