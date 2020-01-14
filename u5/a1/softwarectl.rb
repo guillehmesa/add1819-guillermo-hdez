@@ -30,7 +30,7 @@ end
 
 #Muestra la información con el comando --version
 def info
-  puts 'Autor : Guillermo Hdez Mesa
+  puts '  Autor : Guillermo Hdez Mesa
   Fecha de Creación : 14/01/2020'
 end
 
@@ -39,7 +39,7 @@ def check
   status = `zypper se #{f_package[0]} |grep bin |wc -l`
     if status == 0
       puts 'Uninstalled'
-    elsif status == 1
+    else
       puts 'Installed'
     end
 end
@@ -52,7 +52,7 @@ def run
     f_lines = file.split("\n")
     f_lines.each do |a|
       f_package = a.split(":")
-      install(f_package)
+      check(f_package)
     end
   else
     puts 'Se nesecita ser usuario root para ejecutar el script'
@@ -69,7 +69,7 @@ def install
     if status == 0
       `apt-get install -y #{f_package[0]}`
       puts 'Installed'
-    elsif status == 1
+    else
       puts 'Ya está instalado'
     end
   end
@@ -84,7 +84,7 @@ def remove
     if status == 0
       `apt-get remove -y #{f_package[0]}`
       puts 'Uninstalled'
-    elsif status == 1
+    else
       puts 'No está instalado'
     end
   end
