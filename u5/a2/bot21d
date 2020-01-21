@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'telegram/bot'
+
+token = `cat /etc/bot21/token`.strip
+bot_username = '@hernandez21_bot'
+
+puts "[INFO] Iniciando bot de Guillermo..."
+
+Telegram::Bot::Client.run(token) do |bot|
+  bot.listen do |message|
+    puts " => #{message.text}"
+    if message.text == "/help"
+      bot.api.send_message(chat_id: message.chat.id, text: ''' Comandos:
+      /blog -> Mostrar Blog del IES Puerto de la Cruz
+      /hello -> ¡Hola!
+      /user -> Usuario actual
+      /ping -> Hace ping a 8.8.8.8''')
+    elsif message.text == "/hello"
+      bot.api.send_message(chat_id: message.chat.id, text: "¡Hola!")
+    elsif message.text == "/blog"
+      bot.api.send_message(chat_id: message.chat.id, text: "Blog del instituto: https://blog.iespuertodelacruz.es/")
+    elsif message.text == "/user"
+      user = `whoami`
+      bot.api.send_message(chat_id: message.chat.id, text: "#{user}")
+    elsif message.text == "/ping"
+      ping = `ping 8.8.8.8 -c4`
+      bot.api.send_message(chat_id: message.chat.id, text: "Haciendo ping a 8.8.8.8 #{ping}")
+    end
+  end
+end
