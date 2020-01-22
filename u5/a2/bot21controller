@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+def prove()
+  command = `systemctl status bot21 | grep Active`
+  status = command.split(" ")
+end
+
+if prove() == 'active'
+  exit 1
+else
+  `systemctl start bot21`
+end

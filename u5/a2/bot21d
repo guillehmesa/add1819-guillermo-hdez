@@ -2,7 +2,7 @@
 
 require 'telegram/bot'
 
-token = `cat /etc/bot21/token`.strip
+token = %x[cat /etc/bot21/token].strip
 bot_username = '@hernandez21_bot'
 
 puts "[INFO] Iniciando bot de Guillermo..."
