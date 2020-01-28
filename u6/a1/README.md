@@ -62,3 +62,33 @@ Ahora vamos a aplicar los cambios. Recargamos la configuraciónde la MV y volvem
 Por último, comoprobamos que se instaló el __nmap__.
 
 ![Captura 16](img/16.png)
+
+## 7.2: Crear caja Vagrant
+
+Creamos una nueva carpeta que se llame __vagrant21-proyecto5__.
+
+![Captura 17](img/17.png)
+
+Ahora comprobamos que MV tenemos.
+
+![Captura 18](img/18.png)
+
+Utilizaremos la que pone __Ubuntu__. Nos aseguramos que la MV está apagada y creamos la caga __package.box__ a partir de la MV.
+
+![Captura 19](img/19.png)
+
+Ahora comprobamos que se ha creado el fichero.
+
+![Captura 20](img/20.png)
+
+Ahora agregamos la caja al repositorio local.
+
+![Captura 21](img/21.png)
+
+Modificamos el __Vagrantfile__.
+
+![Captura 22](img/22.png)
+
+Ahora levantamos la MV.
+
+![Captura 23](img/23.png)
