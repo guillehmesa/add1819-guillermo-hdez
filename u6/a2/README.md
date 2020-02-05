@@ -109,3 +109,17 @@ Ahora aplicamos el estado.
 Crearemos una MV3 con SO Windows que se llame __minion21w__
 
 Nos descargamos el `Salt-minion` y lo instalamos.
+
+![Captura 25](img/25.png)
+
+Vamos al __CMD__ y activamos el servicio.
+
+![Captura 26](img/26.png)
+
+Ahora vamos a la MV Master y comprobamos las peticiones pendientes.
+
+![Captura 27](img/27.png)
+
+Lo agregamos al master y volvemos a comprobar.
+
+![Captura 28](img/28.png)
